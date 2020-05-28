@@ -18,7 +18,9 @@ class ToDoListViewController: UITableViewController {
     // let defaults = UserDefaults.standard
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
+    
+//    searchBar.delegate = self
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(dataFilePath)
@@ -52,6 +54,8 @@ class ToDoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //print(itemArray[indexPath.row])
         
+//      context.delete(itemArray[indexPath.row])
+//      itemArray.remove(at: indexPath.row)
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
         saveItems()
@@ -107,5 +111,31 @@ class ToDoListViewController: UITableViewController {
         } catch{
             print("Error fetching data from Context \(error)")
         }
+    }
+    
+    
+}
+
+//MARK: - Search Bar Methods
+extension ToDoListViewController: UISearchBarDelegate{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        request.predicate = predicate
+        
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        
+        request.sortDescriptors = [sortDescriptor]
+        
+        do{
+            itemArray = try context.fetch(request)
+        } catch {
+            print("Error fetching data \(error)")
+        }
+        
+        tableView.reloadData()
     }
 }

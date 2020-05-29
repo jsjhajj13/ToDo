@@ -23,6 +23,8 @@ class ToDoListViewController: UITableViewController {
     // Another way of local data persisitence using default data types
     // let defaults = UserDefaults.standard
     
+    //USING CORE DATA
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
 //    searchBar.delegate = self

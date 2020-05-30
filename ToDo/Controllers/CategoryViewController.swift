@@ -23,6 +23,7 @@ class CategoryViewController: UITableViewController {
         super.viewDidLoad()
         
         loadCategories()
+        tableView.rowHeight = 80.0
 
     }
 

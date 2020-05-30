@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import RealmSwift
+import SwipeCellKit
 
 class CategoryViewController: UITableViewController {
     
@@ -34,9 +35,11 @@ class CategoryViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell",  for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell",  for: indexPath) as! SwipeTableViewCell
 
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added"
+        
+        cell.delegate = self
         
         return cell
     }
@@ -112,4 +115,10 @@ class CategoryViewController: UITableViewController {
             destinationVC.selectedCategory = categories?[indexPath.row]
         }
     }
+}
+
+//MARK: - Swipe Cell View Delegate
+
+extension CategoryViewController: SwipeTableViewCellDelegate{
+    
 }

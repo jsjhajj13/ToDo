@@ -17,16 +17,16 @@ class CategoryViewController: UITableViewController {
     
     var categories: Results<Category>?
     
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadCategories()
         tableView.rowHeight = 80.0
-
+        
     }
-
+    
     
     
     //MARK: - Table View DataSource Methods
@@ -34,10 +34,10 @@ class CategoryViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories?.count ?? 1
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell",  for: indexPath) as! SwipeTableViewCell
-
+        
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added"
         
         cell.delegate = self
@@ -65,14 +65,14 @@ class CategoryViewController: UITableViewController {
         
         categories = realm.objects(Category.self)
         
-//        let request : NSFetchRequest<Category> = Category.fetchRequest()
-//        
-//        do{
-//            categories = try context.fetch(request)
-//        } catch{
-//            print("Error Loading Categories \(error)")
-//        }
-//        
+        //        let request : NSFetchRequest<Category> = Category.fetchRequest()
+        //
+        //        do{
+        //            categories = try context.fetch(request)
+        //        } catch{
+        //            print("Error Loading Categories \(error)")
+        //        }
+        //
         tableView.reloadData()
     }
     
@@ -124,14 +124,24 @@ extension CategoryViewController: SwipeTableViewCellDelegate{
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
-
+        
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            print("Item deleted")
+            if let categoryForDeletion = self.categories?[indexPath.row]{
+                do{
+                    try self.realm.write{
+                        self.realm.delete(categoryForDeletion)
+                    }
+                }catch{
+                    print("Error deleting \(error)")
+                }
+                tableView.reloadData()
+            }
+            
         }
-
+        
         // customize the action appearance
         deleteAction.image = UIImage(named: "delete-icon")
-
+        
         return [deleteAction]
     }
 }

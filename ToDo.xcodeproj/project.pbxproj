@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		113AB2FB2481F0EA003273EE /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113AB2FA2481F0EA003273EE /* SwipeTableViewController.swift */; };
 		118C065924819BAC00EBC4F8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C065824819BAC00EBC4F8 /* Item.swift */; };
 		118C065B24819BC100EBC4F8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C065A24819BC100EBC4F8 /* Category.swift */; };
 		11DEA7D8247C351D001950FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DEA7D7247C351D001950FD /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		113AB2FA2481F0EA003273EE /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		118C065824819BAC00EBC4F8 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		118C065A24819BC100EBC4F8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		11DEA7D7247C351D001950FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				11DEA80B2480748F001950FD /* CategoryViewController.swift */,
 				11DEA7DD247C3BBA001950FD /* ToDoListViewController.swift */,
+				113AB2FA2481F0EA003273EE /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				11DEA80C2480748F001950FD /* CategoryViewController.swift in Sources */,
 				11DEA7DE247C3BBA001950FD /* ToDoListViewController.swift in Sources */,
 				11DEA7D8247C351D001950FD /* AppDelegate.swift in Sources */,
+				113AB2FB2481F0EA003273EE /* SwipeTableViewController.swift in Sources */,
 				118C065B24819BC100EBC4F8 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
